@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+    <p>自定义过滤器</p>
+    {% load polls_extras %}
+    {{ html_str | removetags:"p b" }}
+    <br/>
+    源字符串：{{ html_str }}
+</body>
+</html>

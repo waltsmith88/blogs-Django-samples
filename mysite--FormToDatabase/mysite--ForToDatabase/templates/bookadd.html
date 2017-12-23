@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增加图书</title>
+    <script src="../js/jquery-2.1.3.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+    </style>
+</head>
+<body>
+    <h2>增加图书</h2>
+    <h3>GET方式</h3>
+    <form action="/addbooktodatabase/" method="get" name="addbook">
+        <p><span>书名：</span><input type="text" placeholder="书名" name="book_name"></p>
+        <p><span>作者：</span><input type="text" placeholder="作者" name="author"></p>
+        <p><span>作者年龄：</span><input type="text" placeholder="作者年龄" name="author_age"></p>
+        <input type="reset">&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="增加">
+    </form>
+
+    <h3>POST方式</h3>
+    <form action="/addbooktodatabase/" method="post" name="addbook">
+        {% csrf_token %}
+         <p><span>书名：</span><input type="text" placeholder="书名" name="book_name"></p>
+        <p><span>作者：</span><input type="text" placeholder="作者" name="author"></p>
+        <p><span>作者年龄：</span><input type="text" placeholder="作者年龄" name="author_age"></p>
+        <input type="reset">&nbsp;&nbsp;&nbsp;&nbsp;<input type="submit" value="增加">
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>books</title>
+{#    <script src="../js/jquery-2.1.3.min.js"></script>#}
+
+</head>
+<body>
+    <ul>
+        {% for item in book %}
+            <li>{{ item.name }}</li>
+                <ul>
+                  <li>作者：{{ item.person.name }}</li>
+                  <li>年龄：{{ item.person.age }}</li>
+                </ul>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>
