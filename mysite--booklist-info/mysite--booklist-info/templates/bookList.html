@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎访问图书馆</title>
+    <style>
+        a{
+            text-decoration:none;
+        }
+        li{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+{#    在bookList.html文件的body下添加如下代码 #}
+    <h2>图书架</h2>
+    <ul>
+        {% for book in booklist %}
+            <li><a href="{% url 'bookinfo'  book.id  %}">{{ book.name }}</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

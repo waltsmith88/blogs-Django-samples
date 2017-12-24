@@ -38,7 +38,7 @@ def bookinfo(request, id):
 def addbook(request):
     return render(request, 'bookadd.html')
 
-# 向图书馆增加数据GET方法
+# 向图书馆增加数据GET或POST方法，且判断作者是否已经存在
 def addbooktodatabase(request):
     # 获取参数book_name,author,author_age
     if request.method == "GET":
@@ -50,23 +50,30 @@ def addbooktodatabase(request):
         author_name = request.POST["author"]
         author_age = request.POST["author_age"]
 
-    ## 先增加作者信息
+    # 导入类Person
     from polls.models import Person
-    person = Person()
-    person.name = author_name
-    person.age = author_age
-    person.save()
     ## 增加图书信息
     from polls.models import Book
     bookadded = Book(name=book_name)
-    # bookadded = Book()
-    # bookadded.name = bookname
+
+    # 判断作者是否已存在
+    person1 = Person.objects.filter(name=author_name)
+    # 若作者已存在，则不添加作者
+    if person1.exists() != 0:
+        bookadded.person_id = person1[0].id
+    else:
+        # 作者不存在，增加作者信息
+        person = Person()
+        person.name = author_name
+        person.age = author_age
+        person.save()
+        bookadded.person_id = person.id
     # 保存修改
-    bookadded.person_id = person.id
     bookadded.save()
     # 重定向
     from django.http import HttpResponseRedirect
     return HttpResponseRedirect('/addok/')
+
 
 # 返回页面addok
 def addok(request):
